@@ -18,8 +18,15 @@ void heapsort(heap *heap);
 
 typedef struct Node{
     int size;
-    int priority_list[MAX_SIZE];
+    int priority_list[MAX_SIZE];// WARNING: priority_list[0] "não existe"
 }Node;
+
+
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
 void max_heapify(Node *heap, int i){
     int largest;
@@ -93,4 +100,14 @@ void heapsort(Node *heap){
         heap->size--;
         max_heapify(heap, 1);
     }
+}
+
+int main(){
+    Node *heap = (Node*)malloc(sizeof(Node));
+    heap->size = 0;
+    enqueue(heap, 10);
+    enqueue(heap, 13);
+    enqueue(heap, 20);
+    printf("%d", heap->priority_list[1]);
+    return 0 ;
 }
