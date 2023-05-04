@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_SIZE 100
+#define MAX_SIZE 1000
 
 /**
 
@@ -101,7 +101,7 @@ void heapsort(Node *heap){
         max_heapify(heap, 1);
     }
 }
-
+/*
 int main(){
     Node *heap = (Node*)malloc(sizeof(Node));
     heap->size = 0;
@@ -111,3 +111,4 @@ int main(){
     printf("%d", heap->priority_list[1]);
     return 0 ;
 }
+*/

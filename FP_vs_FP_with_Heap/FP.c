@@ -60,7 +60,7 @@ void print_queue(priority_queue *queue){
 
 
 //  Adição de novo elemento checado a prioridade 
-void enqueue(priority_queue *pq, int i, int p){
+void enqueue_FP(priority_queue *pq, int i, int p){
     Node *new_node = (Node*) malloc(sizeof(Node));
     new_node->item = i;
     new_node->priority = p;
@@ -84,7 +84,7 @@ void enqueue(priority_queue *pq, int i, int p){
 }
 
 // Reita o elemento com maior prioridade, que seria o "último".
-Node* dequeue(priority_queue *pq){
+Node* dequeue_FP(priority_queue *pq){
     if (pq == NULL) {
         printf("Priority Queue underflow");
         return NULL;   
@@ -108,15 +108,16 @@ int maximum(priority_queue *pq)
         return pq->head->item;
     }
 }
-
+/*
 int main(){
     priority_queue *queue = create_priority_queue(); //  Creat priority queue
     int item, priority;
     //scanf("%d %d", &item, &priority);
-    enqueue(queue, 4, 4);
-    enqueue(queue, 3, 3);
-    enqueue(queue, 1, 1);
-    enqueue(queue, 2, 2);
+    enqueue_FP(queue, 4, 4);
+    enqueue_FP(queue, 3, 3);
+    enqueue_FP(queue, 1, 1);
+    enqueue_FP(queue, 2, 2);
     print_queue(queue);
     return 0;
 }
+*/

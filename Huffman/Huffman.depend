@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1682974483 source:c:\users\donvicton\desktop\code huff\building.c
+	"building.h"
+
+1682974555 c:\users\donvicton\desktop\code huff\building.h
+	"tree.h"
+	"queue.h"
+
+1682974568 c:\users\donvicton\desktop\code huff\tree.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1682974565 c:\users\donvicton\desktop\code huff\queue.h
+	"tree.h"
+
+1682974565 source:c:\users\donvicton\desktop\code huff\queue.c
+	"queue.h"
+
+1682974566 source:c:\users\donvicton\desktop\code huff\tree.c
+	"tree.h"
+
+1683050328 source:c:\users\donvicton\desktop\code huff\compress.c
+	"compress.h"
+
+1682974556 c:\users\donvicton\desktop\code huff\compress.h
+	"building.h"
+
+1683050321 source:c:\users\donvicton\desktop\code huff\decompress.c
+	"decompress.h"
+
+1682974561 c:\users\donvicton\desktop\code huff\decompress.h
+	"building.h"
+
+1683050298 source:c:\users\donvicton\desktop\code huff\main.c
+	"compress.h"
+	"decompress.h"
+
