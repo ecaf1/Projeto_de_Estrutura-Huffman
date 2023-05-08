@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_SIZE 10000
+#define MAX_SIZE 50000
 
 typedef struct Node_FP{
     int priority;
@@ -169,14 +169,14 @@ int main(){
     srand(time(NULL));
 
     Dados dados[500];
-    FILE* arquivo = fopen("dados.csv", "w");
+    FILE* arquivo = fopen("dados1.csv", "w");
     // Escreve o cabeçalho do CSV
     fprintf(arquivo, "elastic_FP,elastic_heap,tam,item\n");
 
 
     // Insere 500 números aleatórios na Heap
-    for (int i = 0; i < 1000; i++) {
-        int num = rand() % 1000; // Gera um número aleatório entre 0 e 999
+    for (int i = 0; i < 4900; i++) {
+        int num = rand() % 100000 + 1; // Gera um número aleatório entre 0 e 999
         int elastic_2 = enqueue(heap, num); // Insere o número na Heap
         int elastic_1 = enqueue_FP(queue, num);
         fprintf(arquivo, "%d,%d,%d,%d\n", elastic_1, elastic_2, i, num);

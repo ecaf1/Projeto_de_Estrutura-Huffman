@@ -3,8 +3,7 @@
 // Função que lê um caractere do arquivo e cria um nó da árvore de Huffman com ele,
 // retornando esse nó. A função é usada para criar exceções na árvore, quando um caractere
 // especial precisa ser representado na árvore.
-Tree *func_exception(FILE *arquivo)
-{
+Tree *func_exception(FILE *arquivo){
     BYTE character;
     fscanf(arquivo, "%c", &character);
 
@@ -13,19 +12,15 @@ Tree *func_exception(FILE *arquivo)
     if(character == '\\') fscanf(arquivo, "%c", &character);
     h_tree->left = creat_node(character, 0);
     return (Tree*) h_tree;
-
 }
 // Função que reconstrói a árvore de Huffman a partir de um arquivo. Ela lê o caractere atual
 // do arquivo, e se for diferente de "*", cria um novo nó com o caractere lido e retorna ele.
 // Caso contrário, ela cria um nó com "*" e chama recursivamente a função para criar as subárvores
 // à esquerda e à direita desse nó. Quando a função chega ao final do arquivo, ela retorna a raiz
 // da árvore de Huffman.
-Tree* rebuild_huffman_tree (FILE *arquivo)
-{
-
+Tree* rebuild_huffman_tree (FILE *arquivo){
     int condition = 1;
     BYTE character;
-
     fscanf(arquivo, "%c", &character);
 
     if(character != '*')
@@ -71,9 +66,7 @@ Tree* build_huffman_tree(int *array)
 // nós de menor frequência da fila, cria um novo nó pai com "*" e esses dois nós como filhos, e adiciona
 // esse novo nó na fila. O processo se repete até que reste apenas um nó na fila, que será a raiz da árvore
 // de Huffman. A função retorna esse nó raiz.
-Tree* build_Tree(priority_queue *pq)
-{
-
+Tree* build_Tree(priority_queue *pq){
     Tree *aux;
 
     while(1){
@@ -100,9 +93,7 @@ Tree* build_Tree(priority_queue *pq)
 // pré-ordem para a árvore, escrevendo um caractere "*" para cada nó interno e um caractere especial "\""
 // antes de cada caractere especial (nós folha). A função também atualiza o tamanho da string escrita.
 // Ela retorna o tamanho da string escrita.
-int creating_huffman_string(Tree *huffman, FILE *header)
-{
-  
+int creating_huffman_string(Tree *huffman, FILE *header){ 
     int *size = (int*) malloc(sizeof(int));
     BYTE aux = 0;
     (*size) = 0;
