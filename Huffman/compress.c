@@ -2,13 +2,11 @@
 
 //Esta função lê um arquivo e cria um array de frequência para cada caractere.
 //O array é passado como parâmetro e a função atualiza as frequências correspondentes de cada caractere.
-void frequency_count(FILE* arquivo, int* array)
-{
+void frequency_count(FILE* arquivo, int* array){
 
     BYTE character;
 
-    while((fscanf(arquivo,"%c",&character)) != EOF)
-    {
+    while((fscanf(arquivo,"%c",&character)) != EOF){
         ++array[character];
     }
 

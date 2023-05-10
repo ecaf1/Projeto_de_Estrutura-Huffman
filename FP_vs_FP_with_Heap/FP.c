@@ -111,7 +111,7 @@ int maximum(priority_queue *pq){
         return pq->head->item;
     }
 }
-
+/*
 int main(){
     priority_queue *queue = create_priority_queue(); //  Creat priority queue
     srand(time(NULL)); // semente aleatoria 
@@ -122,3 +122,4 @@ int main(){
     print_queue(print_queue);
     return 0;
 }
+*/

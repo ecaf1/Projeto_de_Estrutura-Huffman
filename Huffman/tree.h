@@ -5,9 +5,7 @@
 #include <string.h>
 typedef unsigned char BYTE;
 typedef struct _tree Tree;
-typedef struct priority_q priority_queue;
-struct _tree
-{
+struct _tree{
     int frequency;
     BYTE character;
     Tree *next;
