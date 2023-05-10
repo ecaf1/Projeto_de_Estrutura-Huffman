@@ -3,7 +3,8 @@
 // Função que lê um caractere do arquivo e cria um nó da árvore de Huffman com ele,
 // retornando esse nó. A função é usada para criar exceções na árvore, quando um caractere
 // especial precisa ser representado na árvore.
-Tree *func_exception(FILE *arquivo){
+Tree *func_exception(FILE *arquivo)
+{
     BYTE character;
     fscanf(arquivo, "%c", &character);
 
@@ -12,6 +13,7 @@ Tree *func_exception(FILE *arquivo){
     if(character == '\\')    fscanf(arquivo, "%c", &character);
     h_tree->left = creat_node(character, 0);
     return (Tree*) h_tree;
+
 }
 /* Função que reconstrói a árvore de Huffman a partir de um arquivo. Ela lê o caractere atual
  do arquivo, e se for diferente de "*", cria um novo nó com o caractere lido e retorna ele.
@@ -22,6 +24,7 @@ da árvore de Huffman.
 Tree* rebuild_huffman_tree (FILE *arquivo){
     int condition = 1;
     BYTE character;
+
     fscanf(arquivo, "%c", &character);
     if(character != '*'){
         condition = 0;
@@ -57,25 +60,27 @@ Tree* build_huffman_tree(int *array){ //  Ponteiro para lista de frequencia(int)
 // nós de maior frequência da fila, cria um novo nó pai com "*" e esses dois nós como filhos, e adiciona
 // esse novo nó na fila. O processo se repete até que reste apenas um nó na fila, que será a raiz da árvore
 // de Huffman. A função retorna esse nó raiz.
-Tree* build_Tree(priority_queue *pq){
+Tree* build_Tree(priority_queue *pq)
+{
+
     Tree *aux;
     while(1){
 
         aux = creat_node('*', 0);
         aux->left = dequeue(pq);
-        
+
         if(aux->left != NULL)
             aux->frequency += aux->left->frequency;
-        
+
         aux->right = dequeue(pq);
         if(aux->right != NULL)
             aux->frequency += aux->right->frequency;
-        
+
         if(pq->head == NULL)
             break;
-        
+
         enqueue(aux, pq);
-        
+
     }
     return aux;
 }
@@ -83,7 +88,9 @@ Tree* build_Tree(priority_queue *pq){
 // pré-ordem para a árvore, escrevendo um caractere "*" para cada nó interno e um caractere especial "\""
 // antes de cada caractere especial (nós folha). A função também atualiza o tamanho da string escrita.
 // Ela retorna o tamanho da string escrita.
-int creating_huffman_string(Tree *huffman, FILE *header){ 
+int creating_huffman_string(Tree *huffman, FILE *header)
+{
+
     int *size = (int*) malloc(sizeof(int));
     BYTE aux = 0;
     (*size) = 0;
@@ -118,14 +125,14 @@ O código é composto por diversas funções que juntas constroem a árvore de H
 
 A primeira função, func_exception, é responsável por tratar exceções quando se constrói a árvore de Huffman.
  Ela lê um caractere do arquivo de entrada e cria um nó com esse caractere, que será a raiz da subárvore.
-  Em seguida, lê outro caractere e verifica se é o caractere de escape ''. 
-  Se for, lê mais um caractere e o atribui como o filho esquerdo do nó criado anteriormente. 
+  Em seguida, lê outro caractere e verifica se é o caractere de escape ''.
+  Se for, lê mais um caractere e o atribui como o filho esquerdo do nó criado anteriormente.
   Caso contrário, esse segundo caractere será atribuído como filho esquerdo. A função retorna um ponteiro para a subárvore criada.
 
 A segunda função, rebuild_huffman_tree, é responsável por reconstruir a árvore de Huffman a partir do arquivo de entrada.
 Ela lê um caractere do arquivo e verifica se é o caractere ''. Se não for, significa que se trata de um caractere folha e a função retorna um nó com esse caractere.
 Caso seja '', ela verifica se o próximo caractere é um caractere de escape '' e, se for, lê mais um caractere.
-Em seguida, ela cria um nó com o primeiro caractere lido e chama recursivamente a função para criar os filhos esquerdo e direito desse nó. 
+Em seguida, ela cria um nó com o primeiro caractere lido e chama recursivamente a função para criar os filhos esquerdo e direito desse nó.
 A função retorna um ponteiro para a árvore criada.
 
 A terceira função, build_huffman_tree, é responsável por construir a árvore de Huffman a partir de um vetor de frequências de caracteres.
@@ -140,7 +147,7 @@ Em seguida, soma as frequências dos dois nós filhos e atribui essa soma como f
 
 A quinta função, creating_huffman_string, é responsável por criar a string que representa a árvore de Huffman no arquivo de saída.
 Ela aloca um inteiro para armazenar o tamanho da string e inicia esse tamanho com zero.
-Em seguida, escreve dois caracteres nulos no arquivo de saída, que serão substituídos posteriormente pelo tamanho da string e pela própria string. 
+Em seguida, escreve dois caracteres nulos no arquivo de saída, que serão substituídos posteriormente pelo tamanho da string e pela própria string.
 Em seguida, chama a função write_Tree para escrever a árvore de Huffman no arquivo de saída. A função retorna o tamanho da string criada.
 
 
