@@ -9,66 +9,56 @@ Tree *func_exception(FILE *arquivo){
 
     Tree *h_tree = creat_node(character,0);
     fscanf(arquivo, "%c", &character);
-    if(character == '\\') fscanf(arquivo, "%c", &character);
+    if(character == '\\')    fscanf(arquivo, "%c", &character);
     h_tree->left = creat_node(character, 0);
     return (Tree*) h_tree;
 }
-// Função que reconstrói a árvore de Huffman a partir de um arquivo. Ela lê o caractere atual
-// do arquivo, e se for diferente de "*", cria um novo nó com o caractere lido e retorna ele.
-// Caso contrário, ela cria um nó com "*" e chama recursivamente a função para criar as subárvores
-// à esquerda e à direita desse nó. Quando a função chega ao final do arquivo, ela retorna a raiz
-// da árvore de Huffman.
+/* Função que reconstrói a árvore de Huffman a partir de um arquivo. Ela lê o caractere atual
+ do arquivo, e se for diferente de "*", cria um novo nó com o caractere lido e retorna ele.
+ Caso contrário, ela cria um nó com "*" e chama recursivamente a função para criar as subárvores
+ à esquerda e à direita desse nó. Quando a função chega ao final do arquivo, ela retorna a raiz
+da árvore de Huffman.
+*/
 Tree* rebuild_huffman_tree (FILE *arquivo){
     int condition = 1;
     BYTE character;
     fscanf(arquivo, "%c", &character);
-
-    if(character != '*')
-    {
+    if(character != '*'){
         condition = 0;
     }
-    if(character == '\\')
-    {
+    if(character == '\\'){
         fscanf(arquivo, "%c", &character);
         condition = 0;
     }
     Tree *h_tree = creat_node(character,0);
-    if(condition)
-    {
+    if(condition){
         h_tree->left = rebuild_huffman_tree(arquivo);
         h_tree->right = rebuild_huffman_tree(arquivo);
     }
-
 	return (Tree*)h_tree;
 }
 // Função que constrói a árvore de Huffman a partir da fila de prioridade de nós. Ela retira os dois
-// nós de menor frequência da fila, cria um novo nó pai com "*" e esses dois nós como filhos, e adiciona
+// nós de maior frequência da fila, cria um novo nó pai com "*" e esses dois nós como filhos, e adiciona
 // esse novo nó na fila. O processo se repete até que reste apenas um nó na fila, que será a raiz da árvore
 // de Huffman. A função retorna esse nó raiz.
-Tree* build_huffman_tree(int *array)
-{
-    
+Tree* build_huffman_tree(int *array){ //  Ponteiro para lista de frequencia(int)
     priority_queue *pq = creat_priority_queue();
     Tree *huffman_tree;
-
     int i;
-
     for(i = 255; i >= 0; i--){
         if(*(array+i) != 0)
             enqueue(creat_node(i, *(array+i)), pq);
     }
-
     huffman_tree = build_Tree(pq);
 
     return  (Tree*)huffman_tree;
 }
 // Função que constrói a árvore de Huffman a partir da fila de prioridade de nós. Ela retira os dois
-// nós de menor frequência da fila, cria um novo nó pai com "*" e esses dois nós como filhos, e adiciona
+// nós de maior frequência da fila, cria um novo nó pai com "*" e esses dois nós como filhos, e adiciona
 // esse novo nó na fila. O processo se repete até que reste apenas um nó na fila, que será a raiz da árvore
 // de Huffman. A função retorna esse nó raiz.
 Tree* build_Tree(priority_queue *pq){
     Tree *aux;
-
     while(1){
 
         aux = creat_node('*', 0);
